@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animaçoes</title>
+    <style>
+        @keyframes animaçao {
+            from{background-color: red; width: 800px;}
+            to{background-color: yellow; width: 200px; border-radius: 100px;}
+        }
+        #animaçao{
+            background-color: red;
+            width: 800px;
+            height: 500px;
+            position: absolute;
+        }
+        #animaçao:hover{
+            animation-duration: 2s;
+            animation-name: animaçao;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        #text{
+            position: relative;
+            bottom: 50px;
+        }
+        h1{
+            font-size: 100px;
+            bottom: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="animaçao">
+    </div>
+    <div id="text"><h1>BRUH</h1></div>
+</body>
+</html>

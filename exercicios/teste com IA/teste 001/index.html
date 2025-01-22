@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mickey's Adventure</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+
+    canvas {
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let mickeyX = 50;
+    let mickeyY = 300;
+    let mickeyWidth = 50;
+    let mickeyHeight = 50;
+    let mickeyDY = 0;
+    let gravity = 1;
+    let isJumping = false;
+
+    let bullets = [];
+    let bulletWidth = 10;
+    let bulletHeight = 10;
+    let bulletSpeed = 10;
+    let maxBullets = 10;
+    let remainingBullets = maxBullets;
+
+    let obstacles = [];
+    let obstacleWidth = 40; // Larger width
+    let obstacleHeight = 40; // Larger height
+    let obstacleSpeed = 5;
+    let obstacleInterval = 100;
+    let score = 0;
+
+    let initialMickeyX = mickeyX;
+    let initialMickeyY = mickeyY;
+
+    function drawMickey() {
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(mickeyX, mickeyY, mickeyWidth, mickeyHeight);
+    }
+
+    function drawObstacles() {
+      ctx.fillStyle = '#ff0000';
+      for (let obstacle of obstacles) {
+        ctx.fillRect(obstacle.x, obstacle.y, obstacleWidth, obstacleHeight);
+      }
+    }
+
+    function drawBullets() {
+      ctx.fillStyle = '#0000ff';
+      for (let bullet of bullets) {
+        ctx.fillRect(bullet.x, bullet.y, bulletWidth, bulletHeight);
+      }
+    }
+
+    function updateMickey() {
+      if (isJumping) {
+        mickeyY -= mickeyDY;
+        mickeyDY -= gravity;
+
+        if (mickeyY >= 300) {
+          mickeyY = 300;
+          mickeyDY = 0;
+          isJumping = false;
+        }
+      }
+    }
+
+    function updateObstacles() {
+      for (let obstacle of obstacles) {
+        obstacle.x -= obstacleSpeed;
+
+        if (obstacle.x + obstacleWidth < 0) {
+          obstacles.shift();
+          score++;
+        }
+
+        if (
+          mickeyX < obstacle.x + obstacleWidth &&
+          mickeyX + mickeyWidth > obstacle.x &&
+          mickeyY < obstacle.y + obstacleHeight &&
+          mickeyY + mickeyHeight > obstacle.y
+        ) {
+          gameOver();
+        }
+      }
+
+      if (Math.random() < 0.01) {
+        obstacles.push({ x: canvas.width, y: 300 });
+      }
+    }
+
+    function updateBullets() {
+      for (let bullet of bullets) {
+        bullet.x += bulletSpeed;
+
+        for (let i = 0; i < obstacles.length; i++) {
+          let obstacle = obstacles[i];
+          if (
+            bullet.x < obstacle.x + obstacleWidth &&
+            bullet.x + bulletWidth > obstacle.x &&
+            bullet.y < obstacle.y + obstacleHeight &&
+            bullet.y + bulletHeight > obstacle.y
+          ) {
+            bullets.splice(bullets.indexOf(bullet), 1);
+            obstacles.splice(i, 1);
+            score++;
+            break;
+          }
+        }
+      }
+    }
+
+    function jump() {
+      if (!isJumping) {
+        mickeyDY = 15;
+        isJumping = true;
+      }
+    }
+
+    function shoot(x, y) {
+      if (remainingBullets > 0) {
+        bullets.push({ x: mickeyX + mickeyWidth, y: mickeyY + mickeyHeight / 2 });
+        remainingBullets--;
+      }
+    }
+
+    canvas.addEventListener('click', function(event) {
+      shoot(event.clientX, event.clientY);
+    });
+
+    function gameOver() {
+      alert('Game Over! Your score: ' + score);
+      resetGame();
+    }
+
+    function resetGame() {
+      mickeyX = initialMickeyX;
+      mickeyY = initialMickeyY;
+      remainingBullets = maxBullets;
+      bullets = [];
+      obstacles = [];
+      score = 0;
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.code === 'Space') {
+        jump();
+      }
+    });
+
+    function gameLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      updateMickey();
+      updateObstacles();
+      updateBullets();
+      drawMickey();
+      drawObstacles();
+      drawBullets();
+      requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>treinamneto de grouping tags</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right, green, blue);
+            font-family: sans-serif;
+        }
+        header{
+            background-color: rgba(0, 0, 0, 0.178);
+            border: 8px white double;
+            border-radius: 8px;
+            padding: 13px 8px;
+            margin-bottom: 10px;
+        }
+         main > section{
+            background-color: rgba(0, 0, 0, 0.178);
+            border: 8px white double;
+            border-radius: 8px;
+            padding: 13px 8px;
+        }
+       nav > a{
+            text-decoration: none;
+            color: blue;
+        }
+        footer{
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.315);
+            font-size: large;
+            border-radius: 10px;
+            color: white;
+        }
+        nav > a:hover{
+            text-decoration: underline yellow;
+            background-color: rgba(255, 255, 255, 0.178);
+            border-radius: 5px;
+        }
+        section > article{
+            background-color: rgba(255, 255, 255, 0.11);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>artigo sobre o Brasil</h1>
+        <nav>
+            <a href="#">bruh</a>
+            <a href="#">bruh</a>
+            <a href="#">bruh</a>
+            <a href="#">bruh</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>economia</h2>
+            <article>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi voluptas molestiae inventore saepe odio in corrupti repellendus voluptatem, provident cupiditate doloremque aliquam laudantium quo tempora amet voluptatibus obcaecati praesentium pariatur.</p>
+            </article>
+            <aside>escrito por fulano de tal</aside>
+        </section>
+    </main>
+    <footer>
+        <p>desenvolvido por mim</p>
+    </footer>
+    <script>
+        let nome = window.prompt("qual é seu nome?");
+        window.confirm("bem vindo "+ nome +"")
+    </script>
+</body>
+</html>

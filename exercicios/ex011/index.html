@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imagens adaptaveis e audios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>trabalhando com audio e imagens adaptaveis</h1>
+    <p>para ter uma imagen maior amplie o tamanho da janela do seu navegador &#x1F92F</p>
+    <picture>
+        <source media="(max-width:750px )" srcset="imagens/Foto-P.png" type="image/png">
+        <source media="(max-width:1050px )" srcset="imagens/Foto-M.png" type="image/png">
+        <img src="imagens/Foto-G.png" alt="imagem flexivel">
+    </picture>
+    <h1>Agora escuta ai uma musica foda&#x1F60E</h1>
+    <audio controls preload="metadata">
+    <source src="midia/musica eletronica.mp3" type="audio/mpeg">
+    <p>infelizmente seu navegador nao e compativel com o formato da musica.<a href="midia/musica eletronica.rar" download="aplication/zip">Clique aqui</a> para baixar a musica</p>
+    </audio>
+    <p><a href="midia/musica eletronica.rar" download="aplication/zip">clique aqui</a> pra baixar essa maravilha</p>
+</body>
+</html>
