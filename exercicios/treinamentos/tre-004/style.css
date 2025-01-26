@@ -1,0 +1,31 @@
+@charset "utf-8";
+@keyframes bruh{
+    from{
+        position: absolute;
+    }
+    to{
+        position: absolute;
+        left: 50%;
+    }
+}
+body{
+    background-image: linear-gradient(to right, rgb(0, 102, 255), rgb(0, 225, 255));
+}
+header{
+    background-image: linear-gradient(to left, yellow, rgb(255, 123, 0));
+    text-align: center;
+    animation: bruh 5s 2;
+    border: 10px solid black;
+    border-radius: 100px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.425);
+    padding: auto;;
+    position: absolute;
+    
+    width: 500px;
+}
+menu{
+    background-color: rgba(0, 0, 0, 0.39);
+    width: 200px;
+    height: 1000px;
+    margin: 0;
+}
