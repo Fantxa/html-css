@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+@keyframes logo-animation{
+    0% {
+        transform: scale(1);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    90% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+body{
+    background-color: black;
+    background-image: url('https://wallpapercave.com/wp/wp8012509.jpg');
+    background-size: cover ;
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+menu{
+    background-color: rgba(0, 0, 0, 0.589);
+    width: 150px;
+    height: 160vh;
+    position: fixed;
+    margin-top: -30px;
+    margin-left: -20px;
+    border-top-right-radius:100px;
+}
+#main_logo{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    border: 5px solid rgba(255, 255, 255, 0);
+    position: relative;
+    margin-left: 5px;
+    margin-top: 50px;
+
+}
+#main_logo:hover{
+    animation-name: logo-animation;
+    animation-duration: 0.3s;
+    animation-fill-mode:forwards;
+}
+article > img{
+   position: absolute;
+   right: 0px;
+   top: 0px;
+}
